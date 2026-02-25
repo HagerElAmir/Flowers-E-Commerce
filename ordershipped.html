@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Shipped - Bloom & Petal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; background-color: #fdf8f9; }
+        .success-card { text-align: center; background: white; padding: 50px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 500px; }
+        .icon-circle { width: 80px; height: 80px; background: #e8f5e9; color: #2ecc71; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 40px; margin: 0 auto 20px; }
+        h1 { font-family: 'Playfair Display', serif; color: #1a1a1a; margin-bottom: 10px; }
+        p { color: #666; margin-bottom: 30px; line-height: 1.6; }
+        .btn-home { background: #b05574; color: white; text-decoration: none; padding: 15px 40px; border-radius: 30px; font-weight: 600; transition: 0.3s; }
+        .btn-home:hover { background: #8e425a; box-shadow: 0 5px 15px rgba(176, 85, 116, 0.3); }
+    </style>
+</head>
+<body>
+    <div class="success-card">
+        <div class="icon-circle">✓</div>
+        <h1>Order Confirmed!</h1>
+        <p>Thank you for your purchase. Your flowers are being hand-picked and will be on their way to you very soon.</p>
+        <p style="font-size: 13px; color: #999;">Order ID: #BLOOM-${Math.floor(Math.random() * 1000000)}</p>
+        <a href="home.html" class="btn-home">BACK TO HOME</a>
+    </div>
+</body>
+</html>

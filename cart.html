@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - Bloom & Petal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
+        <link rel="stylesheet" href="cart.css">
+</head> 
+<body>
+    <nav class="navbar">
+        <div class="logo">Bloom&Petal</div>
+        <ul class="nav-links">
+            <li><a href="home.html">Shop</a></li>
+            <li><a href="#contact-info">Contact</a></li>
+        </ul>
+        <div class="user-section">
+            <div class="cart-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="#333" stroke-width="2" class="feather feather-shopping-cart">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <span class="cart-count">0</span>
+            </div>
+            <span>Welcome, <span id="user-name">Guest</span></span>
+            <button id="logout-btn">Logout</button>
+        </div>
+    </nav>
+
+    <div class="cart-container">
+    <h1 class="cart-header">Shopping Cart</h1>
+    
+    <div id="cart-content" class="cart-layout">
+        <div class="cart-items-list" id="cart-items-list">
+            </div>
+
+        <div class="cart-summary">
+            <h3>Order Summary</h3>
+            <div class="summary-row"><span>Subtotal</span> <span id="subtotal">$0.00</span></div>
+            <div class="summary-row"><span>Shipping</span> <span>Free</span></div>
+            <div class="summary-row total-row"><span>Total</span> <span id="final-total">$0.00</span></div>
+            <button class="checkout-btn" onclick="processOrder()">PROCEED TO CHECKOUT</button>
+            <a href="home.html" style="display: block; text-align: center; margin-top: 15px; color: #888; text-decoration: none; font-size: 14px;">← Continue Shopping</a>
+        </div>
+    </div>
+
+    <div id="empty-msg" class="empty-cart">
+        <h2>Your cart is empty 🌸</h2>
+        <p>Looks like you haven't added anything to your cart yet.</p>
+        <button class="checkout-btn" style="width: auto; padding: 15px 40px;" onclick="window.location.href='home.html'">RETURN TO SHOP</button>
+    </div>
+</div>
+
+    
+     <footer class="footer">
+    <div class="footer-content container">
+        <div class="footer-section">
+            <h3>Bloom & Petal</h3>
+            <p>Bringing nature's beauty to your doorstep with our handpicked floral arrangements. We craft every bouquet with love and care for your special moments.</p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="home.html">Shop All</a></li>
+                <li><a href="#">Wedding Collection</a></li>
+                <li><a href="#">Birthday Flowers</a></li>
+                <li><a href="cart.html">Your Cart</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <p>Email: support@bloompetal.com</p>
+            <p>Phone: +1 (234) 567-890</p>
+            <p>Address: 123 Flower St, Nature City</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Bloom & Petal. All rights reserved.</p>
+    </div>
+</footer>
+
+    <button id="scrollToTopBtn">↑</button>
+ 
+    <script src="cart.js"></script>
+</body>
+</html>

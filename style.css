@@ -1,0 +1,120 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #B23B55;
+    --error-color: #d93025;
+    --input-bg: #F9F9F9;
+}
+
+body {
+    background-color: #FAF8F6 !important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+/* Bootstrap Overrides */
+.btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-primary:hover {
+    background-color: #922D43 !important;
+    border-color: #922D43 !important;
+    transform: translateY(-2px) !important;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 .25rem rgba(178, 59, 85, .25) !important;
+    background-color: var(--input-bg) !important;
+}
+
+.form-control {
+    background-color: var(--input-bg) !important;
+    border: 1px solid #E0E0E0 !important;
+    border-radius: 6px !important;
+    transition: all 0.3s ease !important;
+    padding: 12px 16px !important;
+}
+
+.card {
+    border-radius: 12px !important;
+    border: 1px solid #eee !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
+}
+
+.form-control.is-invalid {
+    border-color: var(--error-color) !important;
+    background-color: #fff8f8 !important;
+}
+
+.invalid-feedback {
+    font-size: 0.8rem !important;
+    color: var(--error-color) !important;
+    display: block !important;
+}
+
+/* Custom Styles */
+.logo {
+    font-family: 'Playfair Display', serif !important;
+    color: var(--primary-color) !important;
+    font-size: 2.5rem !important;
+    font-weight: 700 !important;
+    line-height: 1.1;
+}
+
+.welcome-text {
+    font-family: 'Playfair Display', serif !important;
+    color: #333 !important;
+    font-size: 1.8rem !important;
+    font-weight: 600;
+}
+
+.sub-text {
+    color: #666 !important;
+    font-size: 0.95rem;
+}
+
+/* Links */
+.text-primary, .text-primary:hover {
+    color: var(--primary-color) !important;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+.animate-fade {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-shake {
+    animation: shake 0.4s ease-in-out;
+}
+
+/* Responsive tweaks */
+@media (max-width: 576px) {
+    .logo {
+        font-size: 2rem !important;
+    }
+    .welcome-text {
+        font-size: 1.5rem !important;
+    }
+}

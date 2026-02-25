@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Bloom & Petal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="product_Details.css">
+   
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Bloom&Petal</div>
+        <ul class="nav-links">
+            <li><a href="home.html">Shop</a></li>
+            <li><a href="#contact-info">Contact</a></li>
+        </ul>
+        <div class="user-section">
+            <div class="cart-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="#333" stroke-width="2" class="feather feather-shopping-cart">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <span class="cart-count">0</span>
+            </div>
+            <span>Welcome, <span id="user-name">Guest</span></span>
+            <button id="logout-btn">Logout</button>
+        </div>
+    </nav>
+    <div class="back-nav" onclick="goBack()"> ← Back to Shop</div>
+
+   
+
+    <div class="product-wrapper" id="product-content"></div>
+
+    <section class="related-products">
+        <h2 style="font-family: 'Playfair Display'; margin-bottom: 30px;">You May Also Like</h2>
+        <div class="flower-grid" id="related-container"></div>
+    </section>
+<footer class="footer">
+    <div class="footer-content container">
+        <div class="footer-section">
+            <h3>Bloom & Petal</h3>
+            <p>Bringing nature's beauty to your doorstep with our handpicked floral arrangements. We craft every bouquet with love and care for your special moments.</p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="home.html">Shop All</a></li>
+                <li><a href="#">Wedding Collection</a></li>
+                <li><a href="#">Birthday Flowers</a></li>
+                <li><a href="cart.html">Your Cart</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <p>Email: support@bloompetal.com</p>
+            <p>Phone: +1 (234) 567-890</p>
+            <p>Address: 123 Flower St, Nature City</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Bloom & Petal. All rights reserved.</p>
+    </div>
+</footer>
+
+    <button id="scrollToTopBtn">↑</button>
+    
+
+    <script>
+    const flowers = [
+        { id: 1, name: "Luxury White Roses", price: 120, category: "Wedding", img: "assets/cat-wedding.jpg" },
+        { id: 2, name: "Bridal Peony Bouquet", price: 150, category: "Wedding", img: "assets/cat-sympathy.jpg" },
+        { id: 4, name: "Teddy & Red Roses", price: 85, category: "Gifts", img: "assets/product-gift-box.jpg" },
+        { id: 10, name: "Classic Red Roses", price: 49, category: "Roses", img: "assets/product-roses.jpg" },
+        { id: 11, name: "White Lily Elegance", price: 55, category: "Lilies", img: "assets/product-lilies.jpg" },
+        { id: 12, name: "Sunny Sunflower", price: 39, category: "Sunflowers", img: "assets/product-sunflowers.jpg" }
+    ];
+    const goBack = () => {
+    document.body.style.opacity = '0';
+    document.body.style.transition = '0.3s';
+    
+    setTimeout(() => {
+        window.location.href = 'home.html';
+    }, 300);
+};
+
+    let currentQty = 1;
+
+    const handleUserAuth = () => {
+        const userNameElement = document.getElementById("user-name");
+        const logoutBtn = document.getElementById("logout-btn");
+        const storedUser = localStorage.getItem("userAccount");
+
+        if (storedUser && userNameElement) {
+            const user = JSON.parse(storedUser);
+            userNameElement.textContent = user.username;
+        }
+
+        if (logoutBtn) {
+            logoutBtn.onclick = () => {
+                localStorage.removeItem("userAccount");
+                sessionStorage.clear();
+                window.location.href = "login.html";
+            };
+        }
+    };
+
+    const updateCartBadge = () => {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const count = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+        const badge = document.querySelector('.cart-count');
+        if (badge) badge.textContent = count;
+    };
+
+    const loadProduct = () => {
+        const data = localStorage.getItem('selectedProduct');
+        if (!data) { window.location.href = 'home.html'; return; }
+
+        const product = JSON.parse(data);
+        const container = document.getElementById('product-content');
+
+        container.innerHTML = `
+            <div class="image-box">
+                <img src="${product.img}" alt="${product.name}">
+            </div>
+            <div class="info-box">
+                <div class="stars-row">★★★★☆ <span style="color:#888; font-size:12px;">(4.0)</span></div>
+                <h1 class="p-title">${product.name}</h1>
+                <div class="p-price">$${product.price}</div>
+                <p class="p-desc">Breathtaking ${product.name} that fill any room with their intoxicating fragrance. A timeless classic for any occasion.</p>
+                
+                <span class="option-label">SIZE</span>
+                <div class="size-btns">
+                    <button class="s-btn active">Standard (6)</button>
+                    <button class="s-btn">Deluxe (12)</button>
+                </div>
+
+                <span class="option-label">QUANTITY</span>
+                <div class="qty-row">
+                    <div class="qty-box">
+                        <button class="qty-btn" onclick="updateQty(-1)">-</button>
+                        <span id="qty-val">${currentQty}</span>
+                        <button class="qty-btn" onclick="updateQty(1)">+</button>
+                    </div>
+                </div>
+
+                <div class="cart-row">
+                    <button class="btn-add-main" onclick="addToCart()">Add to Cart — $<span id="total-price">${product.price}</span></button>
+                </div>
+
+                <div class="included-list">
+                    <h4 style="margin-bottom:15px; font-size:13px; letter-spacing:1px; color:#333;">WHAT'S INCLUDED</h4>
+                    <div class="inc-item"><span>✓</span> 6 stems of Fresh ${product.category}</div>
+                    <div class="inc-item"><span>✓</span> Each stem has multiple blooms</div>
+                    <div class="inc-item"><span>✓</span> Hand-wrapped in eco-friendly paper</div>
+                    <div class="inc-item"><span>✓</span> Signature gift card included</div>
+                </div>
+            </div>
+        `;
+        document.body.classList.add('loaded');
+    };
+
+    const updateQty = (val) => {
+        const product = JSON.parse(localStorage.getItem('selectedProduct'));
+        currentQty = Math.max(1, currentQty + val);
+        document.getElementById('qty-val').textContent = currentQty;
+        document.getElementById('total-price').textContent = (product.price * currentQty).toFixed(2);
+    };
+
+    const displayRelated = () => {
+        const container = document.getElementById('related-container');
+        const currentProduct = JSON.parse(localStorage.getItem('selectedProduct'));
+        if(!currentProduct) return;
+        
+        const related = flowers.filter(f => f.id !== currentProduct.id).slice(0, 4);
+
+        container.innerHTML = related.map(f => `
+            <div class="related-card" onclick="updateProduct(${f.id})">
+                <img src="${f.img}">
+                <h3 style="font-size:16px; margin: 10px 0;">${f.name}</h3>
+                <p style="color:#b05574; font-weight:bold;">$${f.price}</p>
+            </div>
+        `).join('');
+    };
+
+    const updateProduct = (id) => {
+        const product = flowers.find(f => f.id === id);
+        localStorage.setItem('selectedProduct', JSON.stringify(product));
+        document.body.style.opacity = '0';
+        setTimeout(() => window.location.reload(), 300);
+    };
+
+    const addToCart = () => {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const product = JSON.parse(localStorage.getItem('selectedProduct'));
+        
+        if (!product) return;
+
+        const existingProduct = cart.find(item => item.id === product.id);
+        if (existingProduct) {
+            existingProduct.quantity += currentQty;
+        } else {
+            cart.push({ ...product, quantity: currentQty });
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        updateCartBadge();
+        showToast("Added to your trolley! 🌸");
+    };
+
+    const showToast = (msg) => {
+        let toast = document.getElementById("toast");
+        if(!toast) {
+            toast = document.createElement("div");
+            toast.id = "toast";
+            document.body.appendChild(toast);
+        }
+        toast.textContent = msg;
+        toast.className = "show";
+        setTimeout(() => { toast.className = ""; }, 3000);
+    };
+
+    window.onload = () => {
+        handleUserAuth();   
+        updateCartBadge();  
+        loadProduct();
+        displayRelated();
+    };
+
+    const cartIcon = document.querySelector('.cart-icon');
+    if (cartIcon) {
+        cartIcon.style.cursor = "pointer";
+        cartIcon.onclick = () => window.location.href = 'cart.html';
+    }
+
+    const scrollBtn = document.getElementById("scrollToTopBtn");
+    window.addEventListener("scroll", () => {
+        if (scrollBtn) scrollBtn.style.display = window.scrollY > 300 ? "block" : "none";
+    });
+
+    if (scrollBtn) {
+        scrollBtn.onclick = () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+    }
+</script>
+</body>
+</html>
